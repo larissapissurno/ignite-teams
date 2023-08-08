@@ -1,13 +1,16 @@
 import React from "react";
-import * as S from "./Groups.styles";
 import { Header } from "@components/header/Header";
+import { Container } from "./Groups.styles";
+import { Highlight } from "@components/highlight/Highlight";
 
 export function Groups() {
   return (
-    <S.Container>
+    <Container>
       <Header />
-
-      <S.Title>Groups</S.Title>
-    </S.Container>
+      <Highlight
+        title="Teams"
+        subtitle="Find your friends and start a group!"
+      />
+    </Container>
   );
 }
