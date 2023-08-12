@@ -5,6 +5,7 @@ import { Highlight } from "@components/highlight/Highlight";
 import { GroupCard } from "@components/group-card/GroupCard";
 import { FlatList } from "react-native";
 import { EmptyList } from "@components/empty-list/EmptyList";
+import { Button } from "@components/button/Button";
 
 export function Groups() {
   const [groups, setGroups] = React.useState<string[]>([]);
@@ -27,6 +28,8 @@ export function Groups() {
           <EmptyList message="How about creating a new team?" />
         )}
       />
+
+      <Button title="Add new team" />
     </Container>
   );
 }
