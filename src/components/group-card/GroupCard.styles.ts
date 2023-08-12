@@ -14,6 +14,8 @@ export const Container = styled(TouchableOpacity)`
 
   padding: 24px;
   mask-border: 12px;
+
+  margin-top: 16px;
 `;
 
 export const Title = styled.Text`
@@ -24,7 +26,7 @@ export const Title = styled.Text`
 
 export const Icon = styled(UsersThree).attrs(({ theme }) => ({
   size: 32,
-  color: theme.COLORS.GRAY_700,
+  color: theme.COLORS.GREEN_700,
   weight: "fill",
 }))`
   margin-right: 20px;
