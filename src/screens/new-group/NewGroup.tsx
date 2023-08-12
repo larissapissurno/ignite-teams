@@ -17,7 +17,7 @@ export function NewGroup() {
           subtitle="create a new team to add your friends"
         />
 
-        <Input />
+        <Input placeholder="Awesome team name" />
 
         <Button title="Add" style={{ marginTop: 20 }} />
       </Content>
