@@ -4,13 +4,10 @@ import { Container } from "./Groups.styles";
 import { Highlight } from "@components/highlight/Highlight";
 import { GroupCard } from "@components/group-card/GroupCard";
 import { FlatList } from "react-native";
+import { EmptyList } from "@components/empty-list/EmptyList";
 
 export function Groups() {
-  const [groups, setGroups] = React.useState<string[]>([
-    "Team 1",
-    "Team 2",
-    "Team 3",
-  ]);
+  const [groups, setGroups] = React.useState<string[]>([]);
 
   return (
     <Container>
@@ -25,6 +22,10 @@ export function Groups() {
         data={groups}
         keyExtractor={(item) => item}
         renderItem={({ item }) => <GroupCard title={item} />}
+        contentContainerStyle={groups.length === 0 ? { flex: 1 } : {}}
+        ListEmptyComponent={() => (
+          <EmptyList message="How about creating a new team?" />
+        )}
       />
     </Container>
   );
