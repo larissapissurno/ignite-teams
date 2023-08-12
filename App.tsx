@@ -1,6 +1,5 @@
 import React from "react";
 import { ThemeProvider } from "styled-components/native";
-import { Groups } from "@screens/groups/Groups";
 import theme from "@themes/default";
 import {
   useFonts,
@@ -9,7 +8,9 @@ import {
 } from "@expo-google-fonts/roboto";
 import { Loading } from "@components/loading/Loading";
 import { StatusBar } from "react-native";
+import { Groups } from "@screens/groups/Groups";
 import { NewGroup } from "@screens/new-group/NewGroup";
+import { Players } from "@screens/players/Players";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
@@ -22,7 +23,7 @@ export default function App() {
         translucent
       />
 
-      {fontsLoaded ? <NewGroup /> : <Loading />}
+      {fontsLoaded ? <Players /> : <Loading />}
     </ThemeProvider>
   );
 }
