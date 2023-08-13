@@ -1,8 +1,7 @@
 import { Platform } from "react-native";
 import styled from "styled-components/native";
 import { css } from "styled-components/native";
-import { CaretLeft } from 'phosphor-react-native'
-
+import { CaretLeft } from "phosphor-react-native";
 
 export const Container = styled.View`
   width: 100%;
@@ -10,7 +9,13 @@ export const Container = styled.View`
   align-items: center;
   justify-content: center;
 
-  ${Platform.OS === "ios" ? css`padding: 48px 0;` : css`padding: 0;`}
+  ${Platform.OS === "ios"
+    ? css`
+        padding-top: 48px;
+      `
+    : css`
+        padding: 0;
+      `}
 `;
 
 export const Logo = styled.Image`
@@ -19,10 +24,10 @@ export const Logo = styled.Image`
 `;
 
 export const BackButton = styled.TouchableOpacity`
-  flex: 1
+  flex: 1;
 `;
 
 export const BackIcon = styled(CaretLeft).attrs(({ theme }) => ({
   color: theme.COLORS.WHITE,
-  size: 32
+  size: 32,
 }))``;
