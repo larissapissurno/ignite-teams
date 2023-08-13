@@ -9,11 +9,17 @@ import { Filter } from "@components/filter/Filter";
 import { PlayerCard } from "@components/player-card/PlayerCard";
 import { EmptyList } from "@components/empty-list/EmptyList";
 import { Button } from "@components/button/Button";
+import { ParamListBase, RouteProp, useRoute } from "@react-navigation/native";
+import { PlayerScreenRouteProp } from "src/@types/navigation";
 
 // type Team = {
 //   name: string;
 //   isActive: boolean;
 // };
+
+type RouteParams = ParamListBase & {
+  group: string;
+};
 
 export function Players() {
   const [teams, setTeams] = useState<string[]>(["Team 1", "Team 2", "Team 3"]);
@@ -28,6 +34,10 @@ export function Players() {
 
   const [activeTeam, setActiveTeam] = useState<string>(teams[0]);
 
+  const {
+    params: { group },
+  } = useRoute<PlayerScreenRouteProp>();
+
   function handleRemovePlayer(player: string) {
     setPlayers((oldPlayers) => oldPlayers.filter((item) => item !== player));
   }
@@ -36,7 +46,7 @@ export function Players() {
     <Container>
       <Header showBackButton />
 
-      <Highlight title="Team name" subtitle="add players and organize teams" />
+      <Highlight title={group} subtitle="add players and organize teams" />
 
       <Form>
         <Input placeholder="Player name" autoCorrect={false} />

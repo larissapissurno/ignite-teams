@@ -9,3 +9,7 @@ export declare global {
     }
   }
 }
+
+type RouteParamsProps = NativeStackScreenProps<RootStackParamList, "players">;
+
+export type PlayerScreenRouteProp = RouteParamsProps["players"];
