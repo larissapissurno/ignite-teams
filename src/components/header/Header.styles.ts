@@ -11,7 +11,7 @@ export const Container = styled.View`
 
   ${Platform.OS === "ios"
     ? css`
-        padding-top: 48px;
+        padding-top: 32px;
       `
     : css`
         padding: 0;

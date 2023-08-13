@@ -9,6 +9,8 @@ import {
 import { Loading } from "@components/loading/Loading";
 import { StatusBar } from "react-native";
 import { Routes } from "@routes/Routes";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useTheme } from "styled-components";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
