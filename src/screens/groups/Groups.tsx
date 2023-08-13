@@ -6,9 +6,16 @@ import { GroupCard } from "@components/group-card/GroupCard";
 import { FlatList } from "react-native";
 import { EmptyList } from "@components/empty-list/EmptyList";
 import { Button } from "@components/button/Button";
+import { useNavigation } from "@react-navigation/native";
 
 export function Groups() {
+  const navigation = useNavigation();
+
   const [groups, setGroups] = React.useState<string[]>([]);
+
+  function handleNewGroup() {
+    navigation.navigate("new");
+  }
 
   return (
     <Container>
@@ -30,7 +37,7 @@ export function Groups() {
         showsVerticalScrollIndicator={false}
       />
 
-      <Button title="Add new team" />
+      <Button title="Add new team" onPress={handleNewGroup} />
     </Container>
   );
 }
