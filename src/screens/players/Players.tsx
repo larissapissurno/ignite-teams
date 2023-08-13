@@ -7,6 +7,8 @@ import { useState } from "react";
 import { FlatList } from "react-native";
 import { Filter } from "@components/filter/Filter";
 import { PlayerCard } from "@components/player-card/PlayerCard";
+import { EmptyList } from "@components/empty-list/EmptyList";
+import { Button } from "@components/button/Button";
 
 // type Team = {
 //   name: string;
@@ -65,7 +67,17 @@ export function Players() {
         renderItem={({ item }) => (
           <PlayerCard name={item} onRemove={handleRemovePlayer} />
         )}
+        ListEmptyComponent={() => (
+          <EmptyList message="Add new players to this team" />
+        )}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={[
+          { paddingBottom: 100 },
+          players.length === 0 ? { flex: 1 } : {},
+        ]}
       />
+
+      <Button title="Remove team" variant="secondary" />
     </Container>
   );
 }
