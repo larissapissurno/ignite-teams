@@ -3,8 +3,15 @@ import { Container, Content, Icon } from "./NewGroup.styles";
 import { Highlight } from "@components/highlight/Highlight";
 import { Button } from "@components/button/Button";
 import { Input } from "@components/input/Input";
+import { useNavigation } from "@react-navigation/native";
 
 export function NewGroup() {
+  const navigation = useNavigation();
+
+  function handleNewGroup() {
+    navigation.navigate("players", { group: "Casa" });
+  }
+
   return (
     <Container>
       <Header showBackButton />
@@ -19,7 +26,11 @@ export function NewGroup() {
 
         <Input placeholder="Awesome team name" />
 
-        <Button title="Add" style={{ marginTop: 20 }} />
+        <Button
+          title="Add"
+          style={{ marginTop: 20 }}
+          onPress={handleNewGroup}
+        />
       </Content>
     </Container>
   );
