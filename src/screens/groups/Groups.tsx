@@ -41,7 +41,7 @@ export function Groups() {
     <Container>
       <Header />
       <Highlight
-        title="Teams"
+        title="Groups"
         subtitle="Find your friends and start a group!"
       />
 
@@ -59,7 +59,7 @@ export function Groups() {
         showsVerticalScrollIndicator={false}
       />
 
-      <Button title="Add new team" onPress={handleNewGroup} />
+      <Button title="Add new group" onPress={handleNewGroup} />
     </Container>
   );
 }
