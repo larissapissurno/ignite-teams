@@ -9,23 +9,30 @@ import { Filter } from "@components/filter/Filter";
 import { PlayerCard } from "@components/player-card/PlayerCard";
 import { EmptyList } from "@components/empty-list/EmptyList";
 import { Button } from "@components/button/Button";
-import { ParamListBase, RouteProp, useRoute } from "@react-navigation/native";
+import {
+  ParamListBase,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 import { PlayerScreenRouteProp } from "src/@types/navigation";
 import { AppError } from "@utils/AppError";
 import { PlayerDTO, addPlayer } from "@storage/player/add-player";
 import { getPlayersByGroup } from "@storage/player/get-players-by-group";
 import { removePlayer } from "@storage/player/remove-player";
+import { removeGroup } from "@storage/group/remove-group";
 
 export function Players() {
   const [teams, setTeams] = useState<string[]>(["Team A", "Team B"]);
   const [players, setPlayers] = useState<PlayerDTO[]>([]);
   const [newPlayerName, setNewPlayerName] = useState<string>("");
-
   const [activeTeam, setActiveTeam] = useState<string>(teams[0]);
 
   const {
     params: { group },
   } = useRoute<PlayerScreenRouteProp>();
+
+  const navigation = useNavigation();
 
   const filteredPlayers = players.filter((item) => item.team === activeTeam);
 
@@ -55,9 +62,34 @@ export function Players() {
   }
 
   async function handleRemovePlayer(playerName: string) {
-    const newPlayerList = await removePlayer(playerName, group);
+    try {
+      const newPlayerList = await removePlayer(playerName, group);
 
-    setPlayers(newPlayerList);
+      setPlayers(newPlayerList);
+    } catch (error) {
+      console.debug(error);
+
+      if (error instanceof AppError) {
+        Alert.alert("Remove Player", error.message);
+      } else {
+        Alert.alert("Remove Player", "Unexpected error");
+      }
+    }
+  }
+
+  async function handleRemoveGroup() {
+    try {
+      await removeGroup(group);
+      navigation.navigate("groups");
+    } catch (error) {
+      console.debug(error);
+
+      if (error instanceof AppError) {
+        Alert.alert("Remove Group", error.message);
+      } else {
+        Alert.alert("Remove Group", "Unexpected error");
+      }
+    }
   }
 
   useEffect(() => {
@@ -114,7 +146,11 @@ export function Players() {
         ]}
       />
 
-      <Button title="Remove team" variant="secondary" />
+      <Button
+        title="Remove group"
+        variant="secondary"
+        onPress={handleRemoveGroup}
+      />
     </Container>
   );
 }
