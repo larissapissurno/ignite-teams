@@ -3,8 +3,8 @@ import { Container, Form, ListHeader, PlayersQuantity } from "./Players.styles";
 import { Highlight } from "@components/highlight/Highlight";
 import { ButtonIcon } from "@components/button-icon/ButtonIcon";
 import { Input } from "@components/input/Input";
-import { useEffect, useState } from "react";
-import { Alert, FlatList } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { Alert, FlatList, Keyboard, TextInput } from "react-native";
 import { Filter } from "@components/filter/Filter";
 import { PlayerCard } from "@components/player-card/PlayerCard";
 import { EmptyList } from "@components/empty-list/EmptyList";
@@ -35,6 +35,7 @@ export function Players() {
   const navigation = useNavigation();
 
   const filteredPlayers = players.filter((item) => item.team === activeTeam);
+  const newPlayerNameInputRef = useRef<TextInput>(null);
 
   async function handleNewPlayer() {
     try {
@@ -48,8 +49,12 @@ export function Players() {
       };
 
       await addPlayer(newPlayer, group);
+
       setPlayers((oldPlayers) => [...oldPlayers, newPlayer]);
       setNewPlayerName("");
+
+      newPlayerNameInputRef.current?.blur();
+      Keyboard.dismiss();
     } catch (error) {
       console.debug(error);
 
@@ -104,10 +109,13 @@ export function Players() {
 
       <Form>
         <Input
+          inputRef={newPlayerNameInputRef}
           placeholder="Player name"
           autoCorrect={false}
           value={newPlayerName}
           onChangeText={setNewPlayerName}
+          onSubmitEditing={handleNewPlayer}
+          returnKeyType="done"
         />
 
         <ButtonIcon icon="add" onPress={handleNewPlayer} />
