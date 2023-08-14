@@ -16,10 +16,6 @@ import { PlayerDTO, addPlayer } from "@storage/player/add-player";
 import { getPlayersByGroup } from "@storage/player/get-players-by-group";
 import { removePlayer } from "@storage/player/remove-player";
 
-type RouteParams = ParamListBase & {
-  group: string;
-};
-
 export function Players() {
   const [teams, setTeams] = useState<string[]>(["Team A", "Team B"]);
   const [players, setPlayers] = useState<PlayerDTO[]>([]);
