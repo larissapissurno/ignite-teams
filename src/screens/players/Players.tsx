@@ -82,6 +82,20 @@ export function Players() {
     }
   }
 
+  async function handleRemoveGroupConfirm() {
+    Alert.alert("Remove Group", "Are you sure you want to remove this group?", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Remove",
+        style: "destructive",
+        onPress: handleRemoveGroup,
+      },
+    ]);
+  }
+
   async function handleRemoveGroup() {
     try {
       await removeGroup(group);
@@ -157,7 +171,7 @@ export function Players() {
       <Button
         title="Remove group"
         variant="secondary"
-        onPress={handleRemoveGroup}
+        onPress={handleRemoveGroupConfirm}
       />
     </Container>
   );
