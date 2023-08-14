@@ -8,7 +8,7 @@ export type PlayerDTO = {
   name: string;
 };
 
-export async function newPlayer(
+export async function addPlayer(
   newPlayer: PlayerDTO,
   groupName: string
 ): Promise<void> {

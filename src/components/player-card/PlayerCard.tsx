@@ -3,7 +3,7 @@ import { Container, Icon, Name } from "./PlayerCard.styles";
 
 type PlayerCardProps = {
   name: string;
-  onRemove: (player: string) => void;
+  onRemove: (playerName: string) => void;
 };
 
 export function PlayerCard({ name, onRemove }: PlayerCardProps) {
