@@ -3,10 +3,7 @@ import { PLAYER_COLLECTION } from "@storage/storage-config";
 
 export async function removeAllPlayers(groupName: string): Promise<void> {
   try {
-    await AsyncStorage.setItem(
-      `${PLAYER_COLLECTION}-${groupName}`,
-      JSON.stringify([])
-    );
+    await AsyncStorage.removeItem(`${PLAYER_COLLECTION}-${groupName}`);
   } catch (error) {
     throw error;
   }
