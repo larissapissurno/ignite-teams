@@ -6,6 +6,8 @@ import { Input } from "@components/input/Input";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { newGroup } from "@storage/group/new-group";
+import { AppError } from "@utils/AppError";
+import { Alert } from "react-native";
 
 export function NewGroup() {
   const [group, setGroup] = useState<string>("");
@@ -14,10 +16,20 @@ export function NewGroup() {
 
   async function handleNewGroup() {
     try {
+      if (group.length === 0) {
+        throw new AppError("Group name cannot be empty");
+      }
+
       await newGroup(group);
       navigation.navigate("players", { group });
     } catch (error) {
-      console.log(error);
+      console.debug(error);
+
+      if (error instanceof AppError) {
+        Alert.alert("New group", error.message);
+      } else {
+        Alert.alert("New group", "Something went wrong");
+      }
     }
   }
 
