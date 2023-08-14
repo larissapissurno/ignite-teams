@@ -14,6 +14,7 @@ import { PlayerScreenRouteProp } from "src/@types/navigation";
 import { AppError } from "@utils/AppError";
 import { PlayerDTO, addPlayer } from "@storage/player/add-player";
 import { getPlayersByGroup } from "@storage/player/get-players-by-group";
+import { removePlayer } from "@storage/player/remove-player";
 
 type RouteParams = ParamListBase & {
   group: string;
@@ -57,10 +58,10 @@ export function Players() {
     }
   }
 
-  function handleRemovePlayer(playerName: string) {
-    setPlayers((oldPlayers) =>
-      oldPlayers.filter((item) => item.name !== playerName)
-    );
+  async function handleRemovePlayer(playerName: string) {
+    const newPlayerList = await removePlayer(playerName, group);
+
+    setPlayers(newPlayerList);
   }
 
   useEffect(() => {
@@ -98,7 +99,7 @@ export function Players() {
           )}
         />
 
-        <PlayersQuantity>{players.length}</PlayersQuantity>
+        <PlayersQuantity>{filteredPlayers.length}</PlayersQuantity>
       </ListHeader>
 
       <FlatList
