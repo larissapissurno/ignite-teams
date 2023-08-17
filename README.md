@@ -1,6 +1,7 @@
 # Ignite Teams
 
-![Capa](https://github.com/larissapissurno/ignite-teams/assets/8760873/f780f8b0-6235-43b5-9396-cb79bfd52071)
+![cover](https://github.com/larissapissurno/ignite-teams/assets/8760873/9c6aceeb-f47c-4323-88f1-a18e2816877a)
+
 
 
 This project was developed as part of the React Native module in Rocketseat's Ignite course. The goal of this project is to practice and solidify your understanding of key React Native concepts, including Expo, React Navigation, Styled Components, and more.
